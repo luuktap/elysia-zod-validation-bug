@@ -1,12 +1,13 @@
 {
-  "name": "zod-validation-demo",
+  "name": "elysia-zod-validation-bug",
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
-    "elysia": "latest"
+    "elysia": "^1.4.16",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "bun-types": "latest"

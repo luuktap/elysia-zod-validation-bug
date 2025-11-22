@@ -4,41 +4,35 @@ import z from "zod";
 const app = new Elysia()
   .get("/", () => "Hello Elysia")
   .ws("/typebox", {
-    query: t.Object({
-      token: t.String({ format: "uuid" }),
-    }),
     body: t.Object({
       type: t.Literal("test-one"),
       message: t.String(),
     }),
     open(ws) {
-      console.log("Connection opened", ws.data.query.token);
+      console.log("Connection opened");
     },
     message(ws, message) {
       console.log("Received message:", message);
       ws.send(`Echo: ${JSON.stringify(message)}`);
     },
     close(ws) {
-      console.log("Connection closed", ws.data.query.token);
+      console.log("Connection closed");
     },
   })
   .ws("/zod", {
-    query: z.object({
-      token: z.uuidv4(),
-    }),
     body: z.object({
       type: z.literal("test-one"),
       message: z.string(),
     }),
     open(ws) {
-      console.log("Connection opened", ws.data.query.token);
+      console.log("Connection opened");
     },
     message(ws, message) {
       console.log("Received message:", message);
       ws.send(`Echo: ${JSON.stringify(message)}`);
     },
     close(ws) {
-      console.log("Connection closed", ws.data.query.token);
+      console.log("Connection closed");
     },
   })
   .listen(3000);
